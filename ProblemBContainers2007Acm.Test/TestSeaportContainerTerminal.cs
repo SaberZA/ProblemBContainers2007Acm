@@ -201,32 +201,32 @@ namespace ProblemBContainers2007Acm.Test
             //---------------Test Result -----------------------
             Assert.AreEqual(exception.Message, SpecialCharacterNotAcceptedException.DisplayMessage);
         }
+		[TestCase("A", 1)]
+		[TestCase("AA", 1)]
+		[TestCase("AB", 2)]
+		[TestCase("ABC", 3)]
+		[TestCase("ACB", 2)]
+		[TestCase("ACBA", 2)]
+		[TestCase("CBACBACBACBACBA", 3)]
+		[TestCase("ACMICPC", 4)]
+		[TestCase("CCCCBBBBAAAA", 1)]
+		public void ReceiveContainers_GivenContainers_ShouldReturnExpectedStacks(string containers, int expectedStacks)
+		{
+			//---------------Set up test pack-------------------
 
+			//---------------Assert Precondition----------------
 
+			//---------------Execute Test ----------------------
+			_terminal.ReceiveContainers(containers);
+			//---------------Test Result -----------------------
+			Assert.AreEqual(expectedStacks, _terminal.Stacks);
+		}
 
-        private Terminal CreateTerminal()
+		private Terminal CreateTerminal()
         {
             var terminal = new Terminal();
             return terminal;
         }
 
-    }
-
-    public class SpecialCharacterNotAcceptedException : Exception
-    {
-        public static string DisplayMessage => "Special Characters not Accepted";
-
-        public SpecialCharacterNotAcceptedException() : base(DisplayMessage)
-        {
-        }
-    }
-
-    public class NumberNotAcceptedException: Exception
-    {
-        public static string DisplayMessage => "Numbers not Accepted";
-
-        public NumberNotAcceptedException() : base(DisplayMessage)
-        {
-        }
     }
 }
